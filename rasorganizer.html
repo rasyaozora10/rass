@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rasya Organizer | Event & Wedding Organizer Pangkalan Bun</title>
+<meta name="description" content="Premium Event Organizer & Wedding Organizer di Pangkalan Bun, Kalimantan Tengah.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #FAFAFA;
+  --ivory: #F5F2EC;
+  --champagne: #DCC7AA;
+  --charcoal: #1D1D1D;
+  --gold: #C7A56A;
+  --taupe: #A39184;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 24px 48px; display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+nav.scrolled {
+  background: rgba(250,250,250,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  padding: 16px 48px; box-shadow: 0 1px 0 rgba(29,29,29,0.06);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600;
+  letter-spacing: 2px; color: var(--white); text-decoration: none; transition: color 0.4s ease;
+}
+nav.scrolled .nav-logo { color: var(--charcoal); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--white);
+  text-decoration: none; position: relative; padding-bottom: 4px; transition: color 0.4s ease;
+}
+nav.scrolled .nav-links a { color: var(--charcoal); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase; padding: 12px 28px;
+  border: 1px solid rgba(255,255,255,0.4); color: var(--white); text-decoration: none; transition: all 0.4s ease;
+}
+nav.scrolled .nav-cta { border-color: var(--charcoal); color: var(--charcoal); }
+.nav-cta:hover { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); }
+nav.scrolled .nav-cta:hover { background: var(--charcoal); color: var(--white); }
+.mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.mobile-menu-btn span { display: block; width: 24px; height: 1.5px; background: var(--white); margin: 6px 0; transition: all 0.3s ease; }
+nav.scrolled .mobile-menu-btn span { background: var(--charcoal); }
+
+/* HERO */
+.hero {
+  position: relative; height: 100vh; min-height: 700px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--charcoal);
+}
+.hero-bg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); z-index: 1;
+}
+.hero-bg::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80') center/cover;
+  opacity: 0.35; filter: grayscale(30%) contrast(1.1);
+}
+.hero-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(29,29,29,0.3) 0%, rgba(29,29,29,0.6) 100%); z-index: 2;
+}
+.hero-content {
+  position: relative; z-index: 3; text-align: center; max-width: 900px; padding: 0 24px;
+  opacity: 0; animation: heroReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+@keyframes heroReveal { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+.hero-label {
+  font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 500;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--champagne);
+  margin-bottom: 32px; opacity: 0; animation: fadeIn 1s ease 0.8s forwards;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.hero h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 28px; letter-spacing: -0.5px;
+}
+.hero h1 em { font-style: italic; color: var(--champagne); }
+.hero-subtitle {
+  font-family: 'Inter', sans-serif; font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.7);
+  max-width: 600px; margin: 0 auto 48px; opacity: 0; animation: fadeIn 1s ease 1s forwards;
+}
+.hero-cta-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeIn 1s ease 1.2s forwards; }
+.btn-primary {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; padding: 16px 40px;
+  background: var(--white); color: var(--charcoal); text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--gold); transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: -1;
+}
+.btn-primary:hover::before { left: 0; }
+.btn-primary:hover { color: var(--white); }
+.btn-secondary {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; padding: 16px 40px;
+  background: transparent; color: var(--white); text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.4s ease;
+}
+.btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+.scroll-indicator {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeIn 1s ease 1.6s forwards;
+}
+.scroll-indicator span { font-family: 'DM Sans', sans-serif; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(0.6); } 50% { opacity: 1; transform: scaleY(1); } }
+
+/* TRUST */
+.trust { padding: 120px 48px; background: var(--white); }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 80px; }
+.section-label { font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; color: var(--charcoal); }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 100px; }
+.trust-item { text-align: center; padding: 32px 20px; border: 1px solid rgba(163,145,132,0.15); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.trust-item:hover { border-color: rgba(199,165,106,0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(29,29,29,0.04); }
+.trust-icon { width: 48px; height: 48px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--champagne); border-radius: 50%; }
+.trust-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.trust-item h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 12px; color: var(--charcoal); }
+.trust-item p { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 300; line-height: 1.6; color: var(--taupe); }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; max-width: 800px; margin: 0 auto; text-align: center; }
+.stat-item { position: relative; }
+.stat-item:not(:last-child)::after { content: ''; position: absolute; right: -30px; top: 50%; transform: translateY(-50%); width: 1px; height: 60px; background: rgba(163,145,132,0.2); }
+.stat-number { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 400; color: var(--charcoal); line-height: 1; margin-bottom: 12px; }
+.stat-number span { color: var(--gold); }
+.stat-label { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); }
+
+/* SERVICES */
+.services { padding: 120px 48px; background: var(--ivory); }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto; }
+.service-card { background: var(--white); padding: 56px 48px; position: relative; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); cursor: default; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.service-card:hover::before { height: 100%; }
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(29,29,29,0.06); }
+.service-number { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 400; color: var(--gold); letter-spacing: 2px; margin-bottom: 24px; }
+.service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 500; margin-bottom: 20px; color: var(--charcoal); }
+.service-card p { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; line-height: 1.7; color: var(--taupe); }
+.service-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--charcoal); text-decoration: none; transition: color 0.3s ease; }
+.service-link:hover { color: var(--gold); }
+.service-link svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+.service-link:hover svg { transform: translateX(4px); }
+
+/* PORTFOLIO */
+.portfolio { padding: 120px 48px; background: var(--white); }
+.portfolio-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; grid-template-rows: 1fr 1fr; gap: 16px; max-width: 1200px; margin: 0 auto; height: 700px; }
+.portfolio-item { position: relative; overflow: hidden; cursor: pointer; }
+.portfolio-item:first-child { grid-row: span 2; }
+.portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease; filter: grayscale(20%); }
+.portfolio-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
+.portfolio-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px; background: linear-gradient(to top, rgba(29,29,29,0.7) 0%, transparent 100%); opacity: 0; transition: opacity 0.5s ease; }
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay span { font-family: 'DM Sans', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--champagne); display: block; margin-bottom: 8px; }
+.portfolio-overlay h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; color: var(--white); }
+
+/* WHY CHOOSE */
+.why-choose { padding: 120px 48px; background: var(--charcoal); color: var(--white); }
+.why-choose .section-label { color: var(--champagne); }
+.why-choose .section-title { color: var(--white); }
+.why-choose .section-title em { font-style: italic; color: var(--champagne); }
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; max-width: 900px; margin: 0 auto; }
+.why-item { display: flex; gap: 28px; align-items: flex-start; }
+.why-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; color: var(--gold); line-height: 1; flex-shrink: 0; opacity: 0.6; }
+.why-content h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 12px; color: var(--white); }
+.why-content p { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.6); }
+
+/* TESTIMONIALS */
+.testimonials { padding: 120px 48px; background: var(--ivory); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1100px; margin: 0 auto; }
+.testimonial-card { background: rgba(255,255,255,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); padding: 48px 40px; position: relative; transition: all 0.5s ease; }
+.testimonial-card:hover { background: rgba(255,255,255,0.8); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(29,29,29,0.05); }
+.quote-mark { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--gold); line-height: 1; margin-bottom: 16px; opacity: 0.4; }
+.testimonial-card p { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 300; line-height: 1.8; color: var(--charcoal); margin-bottom: 32px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 16px; }
+.author-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--champagne), var(--taupe)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 500; }
+.author-info h4 { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--charcoal); margin-bottom: 4px; }
+.author-info span { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--taupe); }
+
+/* PROCESS */
+.process { padding: 120px 48px; background: var(--white); }
+.process-timeline { max-width: 900px; margin: 0 auto; position: relative; }
+.process-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--champagne), transparent); transform: translateX(-50%); }
+.process-step { display: flex; align-items: center; margin-bottom: 80px; position: relative; }
+.process-step:last-child { margin-bottom: 0; }
+.process-step:nth-child(odd) { flex-direction: row-reverse; }
+.process-step:nth-child(odd) .process-content { text-align: right; padding-right: 80px; padding-left: 0; }
+.process-content { width: 50%; padding-left: 80px; }
+.process-number { position: absolute; left: 50%; transform: translateX(-50%); width: 56px; height: 56px; background: var(--white); border: 1px solid var(--champagne); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); z-index: 2; }
+.process-content h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 12px; color: var(--charcoal); }
+.process-content p { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300; line-height: 1.7; color: var(--taupe); }
+
+/* INSTAGRAM */
+.instagram { padding: 120px 48px 80px; background: var(--ivory); }
+.instagram-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 1000px; margin: 0 auto 48px; }
+.instagram-item { aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer; }
+.instagram-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; filter: grayscale(30%); }
+.instagram-item:hover img { transform: scale(1.08); filter: grayscale(0%); }
+.instagram-overlay { position: absolute; inset: 0; background: rgba(29,29,29,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
+.instagram-item:hover .instagram-overlay { opacity: 1; }
+.instagram-overlay svg { width: 24px; height: 24px; fill: var(--white); }
+.instagram-cta { text-align: center; }
+.instagram-cta a { display: inline-flex; align-items: center; gap: 12px; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--charcoal); text-decoration: none; padding: 16px 36px; border: 1px solid var(--charcoal); transition: all 0.4s ease; }
+.instagram-cta a:hover { background: var(--charcoal); color: var(--white); }
+
+/* FINAL CTA */
+.final-cta { padding: 160px 48px; background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
+.final-cta::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&q=80') center/cover; opacity: 0.1; filter: grayscale(100%); }
+.final-cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+.final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.2; color: var(--white); margin-bottom: 24px; }
+.final-cta h2 em { font-style: italic; color: var(--champagne); }
+.final-cta p { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 48px; }
+.final-cta .btn-primary { background: var(--gold); color: var(--white); }
+.final-cta .btn-primary::before { background: var(--white); }
+.final-cta .btn-primary:hover { color: var(--charcoal); }
+
+/* FOOTER */
+footer { padding: 80px 48px 40px; background: var(--charcoal); border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto 60px; }
+.footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 2px; color: var(--white); margin-bottom: 20px; }
+.footer-brand p { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.5); max-width: 300px; }
+.footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--champagne); margin-bottom: 24px; }
+.footer-col a, .footer-col p { display: block; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 300; line-height: 2.2; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease; }
+.footer-col a:hover { color: var(--champagne); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+.footer-social { display: flex; gap: 20px; }
+.footer-social a { color: rgba(255,255,255,0.4); transition: color 0.3s ease; }
+.footer-social a:hover { color: var(--champagne); }
+.footer-social svg { width: 18px; height: 18px; }
+
+/* WHATSAPP FLOAT */
+.whatsapp-float { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.3); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none; }
+.whatsapp-float:hover { transform: scale(1.1) translateY(-4px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+.whatsapp-float svg { width: 26px; height: 26px; fill: white; }
+.whatsapp-tooltip { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); background: var(--charcoal); color: var(--white); padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 1px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; border-radius: 4px; }
+.whatsapp-float:hover .whatsapp-tooltip { opacity: 1; transform: translateY(-50%) translateX(-4px); }
+
+/* ANIMATIONS */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; height: 500px; }
+  .portfolio-item:first-child { grid-row: span 1; }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .process-timeline::before { left: 24px; }
+  .process-step { flex-direction: row !important; }
+  .process-step:nth-child(odd) .process-content { text-align: left; padding-right: 0; }
+  .process-content { width: 100%; padding-left: 80px; padding-right: 0; }
+  .process-number { left: 24px; transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .mobile-menu-btn { display: block; }
+  .hero { min-height: 600px; }
+  .trust { padding: 80px 24px; }
+  .trust-grid { grid-template-columns: 1fr; gap: 20px; }
+  .stats-row { grid-template-columns: 1fr; gap: 40px; }
+  .stat-item:not(:last-child)::after { display: none; }
+  .services { padding: 80px 24px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio { padding: 80px 24px; }
+  .portfolio-grid { grid-template-columns: 1fr; height: auto; }
+  .portfolio-item { height: 300px; }
+  .portfolio-item:first-child { height: 400px; }
+  .why-choose { padding: 80px 24px; }
+  .why-grid { grid-template-columns: 1fr; gap: 40px; }
+  .testimonials { padding: 80px 24px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .process { padding: 80px 24px; }
+  .process-timeline::before { left: 20px; }
+  .process-number { left: 20px; width: 44px; height: 44px; font-size: 0.9rem; }
+  .process-content { padding-left: 64px; }
+  .instagram { padding: 80px 24px 60px; }
+  .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+  .final-cta { padding: 100px 24px; }
+  footer { padding: 60px 24px 30px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  .whatsapp-float { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+  .whatsapp-float svg { width: 22px; height: 22px; }
+  .whatsapp-tooltip { display: none; }
+}
+
+/* Mobile Menu */
+.mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--charcoal); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+.mobile-menu.active { opacity: 1; pointer-events: all; }
+.mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); text-decoration: none; transition: color 0.3s ease; }
+.mobile-menu a:hover { color: var(--champagne); }
+.mobile-menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+</style>
+<base target="_blank">
+</head>
+<body>
+<nav id="navbar">
+<a href="#" class="nav-logo">RASYA</a>
+<ul class="nav-links">
+<li><a href="#services">Layanan</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#process">Proses</a></li>
+<li><a href="#testimonials">Testimoni</a></li>
+<li><a href="#contact">Kontak</a></li>
+</ul>
+<a href="https://wa.me/6285754686754" class="nav-cta" target="_blank">Konsultasi</a>
+<button class="mobile-menu-btn" onclick="toggleMenu()">
+<span></span><span></span>
+</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+<button class="mobile-menu-close" onclick="toggleMenu()">&times;</button>
+<a href="#services" onclick="toggleMenu()">Layanan</a>
+<a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+<a href="#process" onclick="toggleMenu()">Proses</a>
+<a href="#testimonials" onclick="toggleMenu()">Testimoni</a>
+<a href="#contact" onclick="toggleMenu()">Kontak</a>
+</div>
+
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<p class="hero-label">Event & Wedding Organizer</p>
+<h1>Every Celebration Deserves<br>A <em>Beautiful Story</em></h1>
+<p class="hero-subtitle">Menciptakan pernikahan, perayaan, dan momen berharga yang tak terlupakan dengan elegansi, presisi, dan kreativitas.</p>
+<div class="hero-cta-group">
+<a href="https://wa.me/6285754686754" class="btn-primary" target="_blank">Jadwalkan Konsultasi</a>
+<a href="#portfolio" class="btn-secondary">Lihat Portfolio</a>
+</div>
+</div>
+<div class="scroll-indicator">
+<span>Gulir</span>
+<div class="scroll-line"></div>
+</div>
+</section>
+
+<section class="trust">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Kepercayaan</p>
+<h2 class="section-title">Dipercaya Ratusan Keluarga</h2>
+</div>
+<div class="trust-grid">
+<div class="trust-item reveal reveal-delay-1">
+<div class="trust-icon">
+<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+</div>
+<h3>Perencanaan Profesional</h3>
+<p>Setiap detail direncanakan dengan matang oleh tim berpengalaman</p>
+</div>
+<div class="trust-item reveal reveal-delay-2">
+<div class="trust-icon">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+</div>
+<h3>Tim Berdedikasi</h3>
+<p>Tim yang berkomitmen penuh untuk kesuksesan acara Anda</p>
+</div>
+<div class="trust-item reveal reveal-delay-3">
+<div class="trust-icon">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<h3>Konsep Personal</h3>
+<p>Setiap acara dirancang unik sesuai visi dan kepribadian Anda</p>
+</div>
+<div class="trust-item reveal reveal-delay-4">
+<div class="trust-icon">
+<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+</div>
+<h3>Eksekusi Detail</h3>
+<p>Perhatian terhadap setiap detail kecil untuk hasil sempurna</p>
+</div>
+</div>
+<div class="stats-row">
+<div class="stat-item reveal">
+<div class="stat-number">150<span>+</span></div>
+<div class="stat-label">Events Managed</div>
+</div>
+<div class="stat-item reveal reveal-delay-1">
+<div class="stat-number">98<span>%</span></div>
+<div class="stat-label">Client Satisfaction</div>
+</div>
+<div class="stat-item reveal reveal-delay-2">
+<div class="stat-number">7<span>+</span></div>
+<div class="stat-label">Years Experience</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="services" id="services">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Layanan</p>
+<h2 class="section-title">Layanan Signature Kami</h2>
+</div>
+<div class="services-grid">
+<div class="service-card reveal reveal-delay-1">
+<p class="service-number">01</p>
+<h3>Wedding Organizer</h3>
+<p>Dari upacara intim hingga perayaan megah, kami menangani setiap detail sehingga Anda dapat menikmati setiap momen berharga.</p>
+<a href="#" class="service-link">
+Pelajari Lebih
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="service-card reveal reveal-delay-2">
+<p class="service-number">02</p>
+<h3>Event Organizer</h3>
+<p>Event korporat, ulang tahun, gala dinner, dan acara spesial lainnya yang dirancang dengan presisi dan elegansi.</p>
+<a href="#" class="service-link">
+Pelajari Lebih
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="service-card reveal reveal-delay-3">
+<p class="service-number">03</p>
+<h3>Decoration & Styling</h3>
+<p>Konsep visual yang indah dan dirancang untuk mencerminkan kepribadian serta visi unik Anda.</p>
+<a href="#" class="service-link">
+Pelajari Lebih
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="service-card reveal reveal-delay-4">
+<p class="service-number">04</p>
+<h3>Bridal & Family Assistance</h3>
+<p>Dukungan penuh dan berdedikasi sepanjang hari istimewa Anda dan keluarga.</p>
+<a href="#" class="service-link">
+Pelajari Lebih
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="portfolio" id="portfolio">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Portfolio</p>
+<h2 class="section-title">Karya Terbaik Kami</h2>
+</div>
+<div class="portfolio-grid">
+<div class="portfolio-item reveal">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Elegant Wedding Reception">
+<div class="portfolio-overlay">
+<span>Wedding</span>
+<h4>Elegant Wedding Reception</h4>
+</div>
+</div>
+<div class="portfolio-item reveal reveal-delay-1">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80" alt="Traditional Wedding Ceremony">
+<div class="portfolio-overlay">
+<span>Ceremony</span>
+<h4>Traditional Wedding Ceremony</h4>
+</div>
+</div>
+<div class="portfolio-item reveal reveal-delay-2">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80" alt="Modern Luxury Engagement">
+<div class="portfolio-overlay">
+<span>Engagement</span>
+<h4>Modern Luxury Engagement</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="why-choose">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Mengapa Kami</p>
+<h2 class="section-title">Bukan Hanya Mengorganisir Event.<br><em>Menciptakan Pengalaman.</em></h2>
+</div>
+<div class="why-grid">
+<div class="why-item reveal">
+<div class="why-number">01</div>
+<div class="why-content">
+<h3>Perencanaan Personal</h3>
+<p>Setiap perayaan dirancang unik berdasarkan visi dan impian Anda. Tidak ada template, hanya karya asli.</p>
+</div>
+</div>
+<div class="why-item reveal reveal-delay-1">
+<div class="why-number">02</div>
+<div class="why-content">
+<h3>Koordinasi Profesional</h3>
+<p>Setiap timeline, vendor, dan detail dikelola dengan lancar oleh tim berpengalaman kami.</p>
+</div>
+</div>
+<div class="why-item reveal reveal-delay-2">
+<div class="why-number">03</div>
+<div class="why-content">
+<h3>Konsep Kreatif</h3>
+<p>Pengalaman yang dirancang dengan penuh pemikiran untuk menciptakan kenangan yang abadi.</p>
+</div>
+</div>
+<div class="why-item reveal reveal-delay-3">
+<div class="why-number">04</div>
+<div class="why-content">
+<h3>Eksekusi Andal</h3>
+<p>Karena momen penting layak mendapatkan kesempurnaan. Kami hadir untuk mewujudkannya.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="testimonials" id="testimonials">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Testimoni</p>
+<h2 class="section-title">Kata Mereka Tentang Kami</h2>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial-card reveal">
+<div class="quote-mark">"</div>
+<p>Semuanya diorganisir dengan sempurna. Kami bisa menikmati setiap momen tanpa khawatir tentang apapun. Tim yang luar biasa profesional.</p>
+<div class="testimonial-author">
+<div class="author-avatar">R</div>
+<div class="author-info">
+<h4>Rina & Andi</h4>
+<span>Wedding Client</span>
+</div>
+</div>
+</div>
+<div class="testimonial-card reveal reveal-delay-1">
+<div class="quote-mark">"</div>
+<p>Tim memahami persis apa yang kami inginkan dan mewujudkan acara impian kami. Setiap detail melebihi ekspektasi kami.</p>
+<div class="testimonial-author">
+<div class="author-avatar">D</div>
+<div class="author-info">
+<h4>Dewi & Family</h4>
+<span>Engagement Client</span>
+</div>
+</div>
+</div>
+<div class="testimonial-card reveal reveal-delay-2">
+<div class="quote-mark">"</div>
+<p>Tamu kami masih membicarakan betapa indah dan terkelola dengan baik acara tersebut. Terima kasih atas pengalaman yang tak terlupakan.</p>
+<div class="testimonial-author">
+<div class="author-avatar">S</div>
+<div class="author-info">
+<h4>Sarah & Budi</h4>
+<span>Wedding Client</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="process" id="process">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Proses</p>
+<h2 class="section-title">Cara Kami Bekerja</h2>
+</div>
+<div class="process-timeline">
+<div class="process-step reveal">
+<div class="process-number">01</div>
+<div class="process-content">
+<h3>Konsultasi</h3>
+<p>Memahami visi, harapan, dan impian Anda untuk acara yang sempurna. Kami mendengarkan dengan tulus.</p>
+</div>
+</div>
+<div class="process-step reveal">
+<div class="process-number">02</div>
+<div class="process-content">
+<h3>Perencanaan</h3>
+<p>Membuat konsep, timeline, dan strategi yang komprehensif untuk setiap aspek acara Anda.</p>
+</div>
+</div>
+<div class="process-step reveal">
+<div class="process-number">03</div>
+<div class="process-content">
+<h3>Persiapan</h3>
+<p>Mengkoordinasikan vendor, logistik, dan setiap detail untuk memastikan semuanya berjalan lancar.</p>
+</div>
+</div>
+<div class="process-step reveal">
+<div class="process-number">04</div>
+<div class="process-content">
+<h3>Eksekusi</h3>
+<p>Menyampaikan acara yang lancar dan berkesan. Anda tinggal menikmati setiap momen berharga.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="instagram">
+<div class="container">
+<div class="section-header reveal">
+<p class="section-label">Instagram</p>
+<h2 class="section-title">@rasfrdni</h2>
+</div>
+<div class="instagram-grid">
+<div class="instagram-item reveal">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80" alt="Instagram 1">
+<div class="instagram-overlay">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+</div>
+<div class="instagram-item reveal reveal-delay-1">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80" alt="Instagram 2">
+<div class="instagram-overlay">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+</div>
+<div class="instagram-item reveal reveal-delay-2">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&q=80" alt="Instagram 3">
+<div class="instagram-overlay">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+</div>
+<div class="instagram-item reveal reveal-delay-3">
+<img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=80" alt="Instagram 4">
+<div class="instagram-overlay">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+</div>
+</div>
+<div class="instagram-cta reveal">
+<a href="https://instagram.com/rasfrdni" target="_blank">
+<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+Kunjungi Instagram
+</a>
+</div>
+</div>
+</section>
+
+<section class="final-cta" id="contact">
+<div class="final-cta-content">
+<h2>Let's Create A Celebration<br><em>Worth Remembering</em></h2>
+<p>Setiap acara besar dimulai dengan sebuah percakapan. Ceritakan visi Anda kepada kami dan mari wujudkan bersama.</p>
+<a href="https://wa.me/6285754686754" class="btn-primary" target="_blank">Book Your Consultation</a>
+</div>
+</section>
+
+<footer>
+<div class="footer-grid">
+<div class="footer-brand">
+<h3>RASYA ORGANIZER</h3>
+<p>Event & Wedding Organizer profesional di Pangkalan Bun, Kalimantan Tengah. Menciptakan momen berharga yang tak terlupakan.</p>
+</div>
+<div class="footer-col">
+<h4>Layanan</h4>
+<a href="#">Wedding Organizer</a>
+<a href="#">Event Organizer</a>
+<a href="#">Decoration</a>
+<a href="#">Bridal Assistance</a>
+</div>
+<div class="footer-col">
+<h4>Alamat</h4>
+<p>Jl. Ahmad Wongso</p>
+<p>Madurejo, Arut Selatan</p>
+<p>Kotawaringin Barat</p>
+<p>Kalimantan Tengah</p>
+</div>
+<div class="footer-col">
+<h4>Kontak</h4>
+<a href="tel:085754686754">0857-5468-6754</a>
+<a href="https://instagram.com/rasfrdni" target="_blank">@rasfrdni</a>
+<a href="https://wa.me/6285754686754" target="_blank">WhatsApp</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2024 Rasya Organizer. All rights reserved.</p>
+<div class="footer-social">
+<a href="https://instagram.com/rasfrdni" target="_blank" aria-label="Instagram">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</a>
+<a href="https://wa.me/6285754686754" target="_blank" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</div>
+</div>
+</footer>
+
+<a href="https://wa.me/6285754686754" class="whatsapp-float" target="_blank" aria-label="Chat WhatsApp">
+<span class="whatsapp-tooltip">Chat dengan kami</span>
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) { navbar.classList.add('scrolled'); } 
+  else { navbar.classList.remove('scrolled'); }
+});
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealElements.forEach(el => revealObserver.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg && scrolled < window.innerHeight) { heroBg.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)'; }
+});
+</script>
+</body>
+</html>
